@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import CheckboxLabel from './CheckboxLabel';
 
 function SummaryForm() {
   const [isChecked, setChecked] = useState(false);
@@ -11,7 +12,7 @@ function SummaryForm() {
           type="checkbox"
           checked={isChecked}
           onChange={() => setChecked(!isChecked)}
-          label="I agree with the terms and conditions"
+          label={<CheckboxLabel />}
         />
       </Form.Group>
       <Button variant="primary" type="submit" disabled={!isChecked}>

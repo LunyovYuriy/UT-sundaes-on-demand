@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderSummaryForm from './components/OrderSummaryForm/OrderSummaryForm';
+import OrderSummaryForm from './components/OrderSummaryForm';
 
 function OrderSummary() {
   return (
