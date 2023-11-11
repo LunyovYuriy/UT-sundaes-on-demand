@@ -152,8 +152,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#vscode settings
+#ide settings
 .vscode
+.idea
 
 #eslint
 .eslintcache

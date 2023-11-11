@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../../test-utils/testing-library-utils';
 import userEvent from '@testing-library/user-event';
 import Summary from '../OrderSummary';
 
@@ -7,10 +7,10 @@ describe('<OrderSummaryForm />', () => {
     render(<Summary />);
 
     const checkbox = screen.getByRole('checkbox', {
-      name: /terms and conditions/i,
+      name: /terms and conditions/i
     });
     const button = screen.getByRole('button', {
-      name: /confirm/i,
+      name: /confirm/i
     });
 
     expect(checkbox).not.toBeChecked();
@@ -23,10 +23,10 @@ describe('<OrderSummaryForm />', () => {
     render(<Summary />);
 
     const checkbox = screen.getByRole('checkbox', {
-      name: /terms and conditions/i,
+      name: /terms and conditions/i
     });
     const button = screen.getByRole('button', {
-      name: /confirm/i,
+      name: /confirm/i
     });
 
     await user.click(checkbox);

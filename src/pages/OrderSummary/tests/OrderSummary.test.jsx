@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../../test-utils/testing-library-utils';
 import OrderSummary from '../OrderSummary';
 
 describe('<OrderSummary />', () => {
@@ -6,7 +6,7 @@ describe('<OrderSummary />', () => {
     render(<OrderSummary />);
 
     const summaryHeading = screen.getByRole('heading', {
-      name: 'Order Summary',
+      name: 'Order Summary'
     });
 
     expect(summaryHeading).toBeInTheDocument();

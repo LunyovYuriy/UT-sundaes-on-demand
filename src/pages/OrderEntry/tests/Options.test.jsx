@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../../test-utils/testing-library-utils';
 import Options from '../components/Options';
 
 describe('<Options />', () => {
@@ -16,7 +16,7 @@ describe('<Options />', () => {
     render(<Options optionType="toppings" />);
 
     const toppingImages = await screen.findAllByRole('img', {
-      name: /topping$/i,
+      name: /topping$/i
     });
     expect(toppingImages).toHaveLength(3);
 
@@ -24,7 +24,7 @@ describe('<Options />', () => {
     expect(altText).toEqual([
       'Cherries topping',
       'M&Ms topping',
-      'Hot fudge topping',
+      'Hot fudge topping'
     ]);
   });
 });
