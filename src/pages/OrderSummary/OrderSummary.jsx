@@ -2,8 +2,9 @@ import React from 'react';
 import OrderSummaryForm from './components/OrderSummaryForm';
 import { useOrderDetailsCtx } from '../../contexts/OrderDetailsCtx';
 import { formatCurrency } from '../../utils';
+import { orderPhases } from '../../constants';
 
-function OrderSummary() {
+function OrderSummary({ setOrderPhase }) {
   const { totals, optionCounts } = useOrderDetailsCtx();
   const scoopArray = Object.entries(optionCounts.scoops);
   const toppingsArray = Object.keys(optionCounts.toppings);
@@ -25,7 +26,7 @@ function OrderSummary() {
           <li key={key}>{key}</li>
         ))}
       </ul>
-      <OrderSummaryForm />
+      <OrderSummaryForm onSubmit={() => setOrderPhase(orderPhases.completed)} />
     </div>
   );
 }

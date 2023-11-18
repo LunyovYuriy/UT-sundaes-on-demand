@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import CheckboxLabel from './CheckboxLabel';
 
-function SummaryForm() {
+function SummaryForm({ onSubmit }) {
   const [isChecked, setChecked] = useState(false);
 
   return (
@@ -15,7 +15,11 @@ function SummaryForm() {
           label={<CheckboxLabel />}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" disabled={!isChecked}>
+      <Button
+        onClick={onSubmit}
+        variant="primary"
+        type="submit"
+        disabled={!isChecked}>
         Confirm
       </Button>
     </Form>

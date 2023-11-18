@@ -25,9 +25,9 @@ function Options({ optionType }) {
       });
 
     return () => {
-      controller.abort();
+      // controller.abort();
     };
-  }, [optionType]);
+  }, [error.name, optionType]);
 
   const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption;
   const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
