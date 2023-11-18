@@ -14,12 +14,19 @@ function Options({ optionType }) {
   const { totals } = useOrderDetailsCtx();
 
   useEffect(() => {
+    const controller = new AbortController();
     axios
-      .get(`http://localhost:3030/${optionType}`)
+      .get(`http://localhost:3030/${optionType}`, { signal: controller.signal })
       .then((response) => setItems(response.data))
       .catch(() => {
-        setError(true);
+        if (error.name !== 'CanceledError') {
+          setError(true);
+        }
       });
+
+    return () => {
+      controller.abort();
+    };
   }, [optionType]);
 
   const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption;

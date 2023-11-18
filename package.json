@@ -40,5 +40,8 @@
     "moduleNameMapper": {
       "^axios$": "axios/dist/axios.js"
     }
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
