@@ -111,3 +111,26 @@ test('toppings header is not displayed on summary page if there is no toppings o
 
   unmount();
 });
+
+test('next button is disabled if no scoops ordered and enabled if it is', async () => {
+  const user = userEvent.setup();
+  const { unmount } = render(<App />);
+
+  const vanillaInput = await screen.findByRole('spinbutton', {
+    name: 'Vanilla'
+  });
+  await user.clear(vanillaInput);
+  await user.type(vanillaInput, '0');
+
+  const nextButton = screen.getByRole('button', {
+    name: /next/i
+  });
+  expect(nextButton).toBeDisabled();
+
+  await user.clear(vanillaInput);
+  await user.type(vanillaInput, '1');
+
+  expect(nextButton).toBeEnabled();
+
+  unmount();
+});
