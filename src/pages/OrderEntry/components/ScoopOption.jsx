@@ -3,7 +3,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { useOrderDetailsCtx } from '../../../contexts/OrderDetailsCtx';
 
 function ScoopOption({ name, imagePath }) {
-  const { updateItemCount } = useOrderDetailsCtx();
+  const { updateItemCount, optionCounts } = useOrderDetailsCtx();
   const handleChange = (e) =>
     updateItemCount(name, parseInt(e.target.value), 'scoops');
 
@@ -18,7 +18,13 @@ function ScoopOption({ name, imagePath }) {
         controlId={`${name}-count`}
         as={Row}
         style={{ marginTop: '10px' }}>
-        <Form.Label column xs={6} style={{ textAlign: 'right' }}>
+        <Form.Label
+          column
+          xs={6}
+          style={{
+            textAlign: 'right',
+            color: optionCounts.scoops?.[name] < 0 ? 'red' : 'white'
+          }}>
           {name}
         </Form.Label>
         <Col xs={5} style={{ textAlign: 'left' }}>

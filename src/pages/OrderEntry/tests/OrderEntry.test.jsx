@@ -6,6 +6,7 @@ import {
 import { rest } from 'msw';
 import { server } from '../../../mocks/server';
 import OrderEntry from '../OrderEntry';
+import userEvent from '@testing-library/user-event';
 
 describe('<OrderEntry />', () => {
   test('Handles error for scoops and toppings routes', async () => {
@@ -25,5 +26,26 @@ describe('<OrderEntry />', () => {
 
       expect(alerts).toHaveLength(2);
     });
+  });
+
+  test('Grand total is not changing if scoops has invalid value', async () => {
+    const user = userEvent.setup();
+    const { unmount } = render(<OrderEntry />);
+
+    const vanillaInput = await screen.findByRole('spinbutton', {
+      name: /vanilla/i
+    });
+    await user.clear(vanillaInput);
+    await user.type(vanillaInput, '-1');
+
+    const grandTotal = screen.getByText(/grand total/i);
+
+    expect(grandTotal).toHaveTextContent(`Grand total: $0.00`);
+
+    await user.clear(vanillaInput);
+    await user.type(vanillaInput, '1');
+    expect(grandTotal).toHaveTextContent(`Grand total: $2.00`);
+
+    unmount();
   });
 });

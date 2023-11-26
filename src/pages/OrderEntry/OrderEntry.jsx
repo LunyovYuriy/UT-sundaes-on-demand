@@ -12,10 +12,15 @@ function OrderEntry({ setOrderPhase }) {
     <div>
       <Options optionType="scoops"></Options>
       <Options optionType="toppings"></Options>
-      <h2>Grand total: {formatCurrency(totals.scoops + totals.toppings)}</h2>
+      <h2>
+        Grand total:{' '}
+        {formatCurrency(
+          (totals.scoops > 0 ? totals.scoops : 0) + totals.toppings
+        )}
+      </h2>
       <Button
         onClick={() => setOrderPhase(orderPhases.review)}
-        disabled={!(totals.scoops + totals.toppings)}>
+        disabled={!totals.scoops || totals.scoops < 0}>
         Next
       </Button>
     </div>
