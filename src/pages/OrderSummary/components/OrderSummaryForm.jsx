@@ -18,7 +18,7 @@ function SummaryForm({ onSubmit }) {
       <Button
         onClick={onSubmit}
         variant="primary"
-        type="submit"
+        type="button"
         disabled={!isChecked}>
         Confirm
       </Button>
