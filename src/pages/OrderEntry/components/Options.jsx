@@ -23,10 +23,6 @@ function Options({ optionType }) {
           setError(true);
         }
       });
-
-    return () => {
-      // controller.abort();
-    };
   }, [error.name, optionType]);
 
   const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption;

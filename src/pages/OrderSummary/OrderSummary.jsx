@@ -20,12 +20,16 @@ function OrderSummary({ setOrderPhase }) {
           </li>
         ))}
       </ul>
-      <h2>Toppings: {formatCurrency(totals.toppings)}</h2>
-      <ul>
-        {toppingsArray.map((key) => (
-          <li key={key}>{key}</li>
-        ))}
-      </ul>
+      {!!totals.toppings && (
+        <>
+          <h2>Toppings: {formatCurrency(totals.toppings)}</h2>
+          <ul>
+            {toppingsArray.map((key) => (
+              <li key={key}>{key}</li>
+            ))}
+          </ul>
+        </>
+      )}
       <OrderSummaryForm onSubmit={() => setOrderPhase(orderPhases.completed)} />
     </div>
   );

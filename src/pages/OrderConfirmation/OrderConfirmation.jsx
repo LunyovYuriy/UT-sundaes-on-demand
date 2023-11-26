@@ -8,8 +8,9 @@ function OrderConfirmation({ setOrderPhase }) {
   const [orderNumber, setOrderNumber] = useState(null);
 
   useEffect(() => {
+    const controller = new AbortController();
     axios
-      .post('http://localhost:3030/order')
+      .post('http://localhost:3030/order', {}, { signal: controller.signal })
       .then((response) => setOrderNumber(response.data.orderNumber))
       .catch((error) => {});
   }, []);
